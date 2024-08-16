@@ -1,0 +1,7 @@
+/* 767px and below */
+
+@media screen and (max-width: 767px) {
+    .drop-zone__prompt {
+        flex-direction: column;
+    }
+}
