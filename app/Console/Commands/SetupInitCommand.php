@@ -36,4 +36,3 @@ class SetupInitCommand extends Command
         $this->info('Your application is ready to use.');
     }
 }
-git

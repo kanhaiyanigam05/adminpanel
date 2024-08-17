@@ -49,7 +49,7 @@ class SettingController extends Controller
     /**
      * Update the resource in storage.
      */
-    public function update(Request $request)
+    private function update(Request $request)
     {
         $request->validate([
             'site_name' => 'nullable|string',
