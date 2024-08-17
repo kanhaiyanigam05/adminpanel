@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         ]);
         Setting::create([
             'site_name' => 'Admin Panel',
+            'primary' => '#51678f',
+            'secondary' => '#090909',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

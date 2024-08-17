@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class SetupCommand extends Command
 {
@@ -19,14 +21,23 @@ class SetupCommand extends Command
     // Execute the console command.
     public function handle()
     {
-        // Run the migrations
-        $this->call('migrate');
-        $this->info('Migrations run successfully.');
+        $this->info('Running composer install...');
+        $process = new Process(['composer', 'install']);
+        $process->run();
 
-        // Run the database seeds
-        $this->call('db:seed');
-        $this->info('Database seeding completed.');
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
 
-        $this->info('Your application is ready to use.');
+        $this->info('Composer install completed.');
+
+        // Copy .env.example to .env
+        if (!file_exists(base_path('.env'))) {
+            $this->info('Copying .env.example to .env...');
+            copy(base_path('.env.example'), base_path('.env'));
+            $this->info('.env file created.');
+        } else {
+            $this->info('.env file already exists. Skipping copy.');
+        }
     }
 }
