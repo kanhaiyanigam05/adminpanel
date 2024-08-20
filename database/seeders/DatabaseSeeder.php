@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
-        $permissions = ['home', 'about', 'services', 'blogs', 'categories', 'testimonials', 'enquiries', 'setting', 'users'];
+        $permissions = ['home', 'about', 'services', 'blogs', 'categories', 'testimonials', 'enquiries', 'meta', 'setting', 'users'];
         foreach ($permissions as $permission) {
             Permission::create([
                 'name' => $permission,
