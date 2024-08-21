@@ -53,6 +53,12 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+            DB::table('user_permission')->insert([
+                'user_id' => User::where('email', 'admin@gmail.com')->first()->id,
+                'permission_id' => Permission::where('name', $permission)->first()->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
     }
 }
