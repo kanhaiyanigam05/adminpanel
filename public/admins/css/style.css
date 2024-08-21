@@ -1303,7 +1303,7 @@ label {
     border-radius: 64px;
     border: 1px solid var(--primary);
     background: var(--primary);
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
 }
 
