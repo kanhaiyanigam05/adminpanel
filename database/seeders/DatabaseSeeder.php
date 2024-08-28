@@ -24,6 +24,20 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => '12345',
         ]);
+        $permissions = ['home', 'about', 'careers', 'services', 'enquiries', 'meta', 'users', 'setting'];
+        foreach ($permissions as $permission) {
+            Permission::create([
+                'name' => $permission,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            DB::table('user_permission')->insert([
+                'user_id' => User::where('email', 'admin@gmail.com')->first()->id,
+                'permission_id' => Permission::where('name', $permission)->first()->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
         Setting::create([
             'site_name' => 'Admin Panel',
             'primary' => '#51678f',
